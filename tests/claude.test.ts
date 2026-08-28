@@ -8,7 +8,7 @@ const fixture = (name: string): unknown =>
 
 const CHAT_ORG = '00000000-0000-4000-8000-0000000000ca';
 const orgs = () => fixture('organizations.json');
-const usage = () => fixture('usage.expected.json');
+const usage = () => fixture('usage.limits.json');
 
 /** Happy-path responder: org discovery, then usage on the first candidate. */
 const happyResponder = (url: string): Response => {
@@ -20,12 +20,32 @@ const happyResponder = (url: string): Response => {
 };
 
 describe('claude adapter', () => {
-  it('discovers the chat-capable org and parses usage windows', async () => {
+  it('discovers the chat-capable org and parses the limits array (live shape)', async () => {
     const ctx = makeCtx(happyResponder);
     const snap = await claudeAdapter.fetch(ctx);
 
     expect(snap.status).toBe('ok');
+    expect(snap.schemaVariant).toBe('org_usage_limits');
+    expect(snap.lanes.map((l) => [l.id, l.label, l.headroomPct])).toEqual([
+      ['session', 'Session (5h)', 87],
+      ['weekly_all', 'Weekly (all models)', 95],
+      ['weekly_scoped:Fable', 'Weekly (Fable)', 93],
+    ]);
+    // Microsecond-precision ISO timestamps normalize cleanly
+    expect(snap.lanes[0]?.resetsAt).toBe('2026-08-28T20:39:59.559Z');
+  });
+
+  it('falls back to the top-level windows shape, tolerating null windows', async () => {
+    const ctx = makeCtx((url) =>
+      url === 'https://claude.ai/api/organizations'
+        ? jsonResponse(orgs())
+        : jsonResponse(fixture('usage.expected.json')),
+    );
+    const snap = await claudeAdapter.fetch(ctx);
+
+    expect(snap.status).toBe('ok');
     expect(snap.schemaVariant).toBe('org_usage_windows');
+    // seven_day_sonnet is null in the fixture and must be skipped, not fatal
     expect(snap.lanes.map((l) => [l.id, l.headroomPct])).toEqual([
       ['five_hour', 96],
       ['seven_day', 97],
