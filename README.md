@@ -1,4 +1,4 @@
-# Ration — AI Quota Tracker
+# Ration - AI Quota Tracker
 
 **One glance at remaining quota across your AI subscriptions.** A browser
 extension that answers a single question: *which of my AI tools has capacity
