@@ -1,0 +1,17 @@
+{
+  "primary_window": {
+    "used_percent": 10,
+    "resets_in_seconds": 3600
+  },
+  "additional_rate_limits": [
+    {
+      "name": "gpt-5-pro",
+      "used_percent": 75,
+      "resets_in_seconds": 86400
+    },
+    {
+      "used_percent": 20,
+      "resets_at": null
+    }
+  ]
+}

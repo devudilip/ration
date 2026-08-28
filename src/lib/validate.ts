@@ -49,7 +49,7 @@ export function arr<T>(schema: Schema<T>): Schema<T[]> {
   };
 }
 
-export function obj<T extends Record<string, unknown>>(shape: {
+export function obj<T extends object>(shape: {
   [K in keyof T]: Schema<T[K]>;
 }): Schema<T> {
   return (v, path) => {
