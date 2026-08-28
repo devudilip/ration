@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Ration</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header id="header">
+      <h1>Ration</h1>
+      <span id="age" title="Age of the freshest reading"></span>
+    </header>
+    <main id="cards" aria-live="polite"></main>
+    <footer id="footer">
+      <button id="wipe" class="link-button" title="Delete everything Ration has stored locally">
+        Clear all data
+      </button>
+      <a
+        id="repo"
+        href="https://github.com/devudilip/ration"
+        target="_blank"
+        rel="noreferrer noopener"
+        >v0.1.0</a
+      >
+    </footer>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>
