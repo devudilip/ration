@@ -41,6 +41,14 @@ export interface FetchContext {
   fetch: typeof globalThis.fetch;
   /** Injected so fetchedAt / reset math is deterministic in tests. */
   now: () => Date;
+  /**
+   * Small per-provider persistent cache (e.g. a discovered org id), backed by
+   * chrome.storage.local in production and an in-memory map in tests.
+   */
+  cache: {
+    get<T>(): Promise<T | undefined>;
+    set<T>(value: T): Promise<void>;
+  };
 }
 
 export interface ProviderAdapter {
