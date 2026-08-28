@@ -36,6 +36,9 @@ Adding a provider is designed to be a single-file contribution — see
 
 ## Install
 
+**Website:** <https://devudilip.github.io/ration> · **Chrome Web Store:**
+coming soon (see `docs/store/` for the submission package).
+
 **Option A — from a release (no build tools needed):**
 
 1. Download `ration-vX.Y.Z.zip` from the
