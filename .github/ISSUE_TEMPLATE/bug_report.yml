@@ -1,0 +1,31 @@
+name: Bug report
+description: Something in the extension misbehaves (not a provider reading failure — use "Adapter broken" for that).
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, what happened instead?
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Ration version
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: "Chrome 129"
+    validations:
+      required: true
+  - type: textarea
+    id: console
+    attributes:
+      label: Console output (optional)
+      description: chrome://extensions → Ration → "Inspect views: service worker" — paste relevant errors. Redact anything personal.
+      render: text
