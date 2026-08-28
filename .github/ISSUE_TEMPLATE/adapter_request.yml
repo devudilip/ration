@@ -1,0 +1,35 @@
+name: New provider request
+description: Ask for a provider to be supported — or better, volunteer to add it (single-file contribution!).
+labels: [adapter-request]
+body:
+  - type: input
+    id: provider
+    attributes:
+      label: Provider
+      placeholder: "Cursor / Gemini / Grok / …"
+    validations:
+      required: true
+  - type: dropdown
+    id: credential
+    attributes:
+      label: Where does its usage data live?
+      description: This decides how (and whether) an extension can read it.
+      options:
+        - Behind a website login I have in my browser (best case)
+        - Behind a local file / CLI token on disk (extensions can't read files)
+        - Behind an API key I'd have to paste
+        - Not sure
+    validations:
+      required: true
+  - type: input
+    id: dashboard
+    attributes:
+      label: Where do you check usage today?
+      placeholder: "https://…/settings/usage"
+  - type: checkboxes
+    id: volunteer
+    attributes:
+      label: Contribution
+      options:
+        - label: I'm willing to record fixtures from my account (redacted)
+        - label: I'd like to write the adapter myself with guidance

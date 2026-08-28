@@ -1,0 +1,44 @@
+name: Adapter broken (grey "!" on a provider)
+description: A provider stopped reading — its endpoint probably changed. Your capture is usually a few-line fix.
+labels: [adapter-broken]
+body:
+  - type: dropdown
+    id: provider
+    attributes:
+      label: Provider
+      options:
+        - Claude (claude.ai)
+        - Codex (chatgpt.com)
+        - Other (say which below)
+    validations:
+      required: true
+  - type: input
+    id: error
+    attributes:
+      label: Error shown on the card
+      description: Hover or read the card's message, e.g. "schema_mismatch …" or "endpoint_not_verified".
+      placeholder: "Error: No known claude.ai usage endpoint matched …"
+    validations:
+      required: true
+  - type: checkboxes
+    id: loggedin
+    attributes:
+      label: Sanity check
+      options:
+        - label: I am logged into the provider's site in this browser profile
+          required: true
+  - type: textarea
+    id: capture
+    attributes:
+      label: Captured response shape (redact all ids!)
+      description: |
+        Log into the provider's site → DevTools → Network tab → open the provider's own
+        usage/settings page → find the usage request → copy its URL path and response JSON here.
+        **Redact every UUID, email, and account identifier** — we only need field names,
+        value types, and rough numbers.
+      render: json
+  - type: input
+    id: version
+    attributes:
+      label: Ration version
+      placeholder: "0.1.0"
