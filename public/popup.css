@@ -1,0 +1,218 @@
+/* Ration popup. Should feel like a browser affordance, not a SaaS dashboard:
+   system font stack, no icon fonts, quiet colors, dark mode via
+   prefers-color-scheme. */
+
+:root {
+  --bg: #ffffff;
+  --fg: #1f2937;
+  --fg-muted: #6b7280;
+  --border: #e5e7eb;
+  --card: #f9fafb;
+  --track: #e5e7eb;
+  --ok: #059669;
+  --warn: #b45309;
+  --bad: #b91c1c;
+  --accent: #2563eb;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1f2937;
+    --fg: #f3f4f6;
+    --fg-muted: #9ca3af;
+    --border: #374151;
+    --card: #111827;
+    --track: #374151;
+    --ok: #34d399;
+    --warn: #fbbf24;
+    --bad: #f87171;
+    --accent: #60a5fa;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 340px;
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 13px/1.45 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+#header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 10px 14px 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+#header h1 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#age {
+  color: var(--fg-muted);
+  font-size: 11px;
+}
+
+#cards {
+  padding: 6px 10px;
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  padding: 8px 10px;
+  margin: 6px 0;
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-glyph {
+  width: 14px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.status-ok .status-glyph {
+  color: var(--ok);
+}
+.status-warn .status-glyph {
+  color: var(--warn);
+}
+.status-bad .status-glyph {
+  color: var(--bad);
+}
+
+.provider-name {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.provider-name:hover {
+  text-decoration: underline;
+}
+
+.headroom {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.card-note {
+  margin: 4px 0 0 20px;
+  color: var(--fg-muted);
+}
+
+.card-note a,
+.link-button {
+  color: var(--accent);
+}
+
+.lane {
+  display: grid;
+  grid-template-columns: minmax(72px, auto) 1fr auto;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0 0 20px;
+}
+
+.lane-label {
+  color: var(--fg-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bar {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--track);
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--ok);
+}
+
+.bar-warn .bar-fill {
+  background: var(--warn);
+}
+
+.bar-bad .bar-fill {
+  background: var(--bad);
+}
+
+.lane-reset {
+  color: var(--fg-muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 4px;
+}
+
+.toggle-row .provider-name {
+  font-weight: 500;
+}
+
+.toggle-row input {
+  margin-left: auto;
+  accent-color: var(--accent);
+}
+
+.section-label {
+  margin: 10px 4px 2px;
+  color: var(--fg-muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+#footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 14px 10px;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+}
+
+.link-button {
+  border: 0;
+  padding: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.link-button:hover {
+  text-decoration: underline;
+}
+
+#repo {
+  color: var(--fg-muted);
+  text-decoration: none;
+}
+
+#repo:hover {
+  text-decoration: underline;
+}
