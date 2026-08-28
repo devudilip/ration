@@ -1,0 +1,46 @@
+{
+  "user_id": "user-XXXXXXXXXXXXXXXXXXXX",
+  "account_id": "",
+  "email": "user@example.com",
+  "plan_type": "plus",
+  "rate_limit": {
+    "allowed": true,
+    "limit_reached": false,
+    "primary_window": {
+      "used_percent": 24,
+      "limit_window_seconds": 18000,
+      "reset_after_seconds": 13933,
+      "reset_at": 1787962525
+    },
+    "secondary_window": {
+      "used_percent": 4,
+      "limit_window_seconds": 604800,
+      "reset_after_seconds": 580683,
+      "reset_at": 1788529276
+    }
+  },
+  "code_review_rate_limit": null,
+  "additional_rate_limits": [
+    {
+      "limit_name": "gpt-reserve",
+      "metered_feature": "base_model_inference",
+      "rate_limit": {
+        "allowed": true,
+        "limit_reached": false,
+        "primary_window": {
+          "used_percent": 0,
+          "limit_window_seconds": 604800,
+          "reset_after_seconds": 604800,
+          "reset_at": 1788553393
+        },
+        "secondary_window": null
+      }
+    }
+  ],
+  "credits": {
+    "has_credits": false,
+    "unlimited": false
+  },
+  "rate_limit_reached_type": null,
+  "promo": null
+}
