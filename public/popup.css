@@ -35,7 +35,7 @@
 }
 
 body {
-  width: 340px;
+  width: 356px;
   margin: 0;
   background: var(--bg);
   color: var(--fg);
@@ -44,9 +44,9 @@ body {
 
 #header {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  padding: 10px 14px 8px;
+  padding: 8px 14px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -54,11 +54,52 @@ body {
   margin: 0;
   font-size: 14px;
   font-weight: 600;
+  white-space: nowrap;
+}
+
+#subtitle {
+  color: var(--fg-muted);
+  font-size: 11px;
+  font-weight: 400;
+}
+
+#header-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 #age {
   color: var(--fg-muted);
   font-size: 11px;
+}
+
+#refresh {
+  border: 0;
+  padding: 2px 4px;
+  background: none;
+  color: var(--fg-muted);
+  font: inherit;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#refresh:hover {
+  color: var(--accent);
+  background: var(--card);
+}
+
+#refresh.spinning {
+  animation: spin 0.8s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 #cards {
@@ -123,10 +164,18 @@ body {
 
 .lane {
   display: grid;
-  grid-template-columns: minmax(72px, auto) 1fr auto;
+  grid-template-columns: minmax(72px, auto) 1fr auto auto;
   align-items: center;
   gap: 8px;
   margin: 6px 0 0 20px;
+}
+
+.lane-pct {
+  color: var(--fg-muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  min-width: 30px;
+  text-align: right;
 }
 
 .lane-label {
@@ -206,6 +255,15 @@ body {
 
 .link-button:hover {
   text-decoration: underline;
+}
+
+#footer-right {
+  display: flex;
+  gap: 10px;
+}
+
+#issues {
+  color: var(--fg-muted);
 }
 
 #repo {

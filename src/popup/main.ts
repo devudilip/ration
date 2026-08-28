@@ -15,6 +15,8 @@ import type { Msg, ProviderAdapter, ProviderSnapshot, Settings } from '../types'
 const cardsEl = document.getElementById('cards') as HTMLElement;
 const ageEl = document.getElementById('age') as HTMLElement;
 const wipeEl = document.getElementById('wipe') as HTMLButtonElement;
+const refreshEl = document.getElementById('refresh') as HTMLButtonElement;
+const repoEl = document.getElementById('repo') as HTMLAnchorElement;
 
 const send = (msg: Msg): Promise<unknown> => chrome.runtime.sendMessage(msg);
 
@@ -69,8 +71,13 @@ function renderOkCard(adapter: ProviderAdapter, snap: ProviderSnapshot, now: Dat
     bar.title = `${Math.round(lane.headroomPct)}% left`;
     bar.append(fill);
     row.append(bar);
+    row.append(el('span', 'lane-pct', `${Math.round(lane.headroomPct)}%`));
     const countdown = formatCountdown(lane.resetsAt, now);
-    row.append(el('span', 'lane-reset', countdown ? `resets ${countdown}` : ''));
+    const reset = el('span', 'lane-reset', countdown ? `resets ${countdown}` : '');
+    if (lane.resetsAt && countdown) {
+      reset.title = `Resets at ${new Date(lane.resetsAt).toLocaleString()}`;
+    }
+    row.append(reset);
     card.append(row);
   }
   return card;
@@ -191,6 +198,17 @@ async function render(): Promise<void> {
 wipeEl.addEventListener('click', () => {
   void send({ type: 'wipeAll' }).then(render);
 });
+
+refreshEl.addEventListener('click', () => {
+  // The worker still applies its politeness gates (60s/provider floor,
+  // backoff) — the button just asks now instead of waiting for the alarm.
+  refreshEl.classList.add('spinning');
+  void send({ type: 'refresh' })
+    .then(render)
+    .finally(() => refreshEl.classList.remove('spinning'));
+});
+
+repoEl.textContent = `v${chrome.runtime.getManifest().version}`;
 
 chrome.storage.onChanged.addListener((_changes, area) => {
   if (area === 'local') void render();

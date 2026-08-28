@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Ration — AI Quota Tracker",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "One glance at remaining quota across your AI subscriptions. No accounts, no telemetry, no credential access.",
   "minimum_chrome_version": "120",
   "permissions": ["storage", "alarms"],
@@ -16,7 +16,7 @@
   },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Ration",
+    "default_title": "Ration — AI Quota Tracker",
     "default_icon": {
       "16": "icons/icon16.png",
       "32": "icons/icon32.png"

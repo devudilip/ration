@@ -1,6 +1,6 @@
 {
   "name": "ration",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Ration — AI Quota Tracker. A browser extension showing remaining quota across your AI subscriptions in one glance.",
   "type": "module",
