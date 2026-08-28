@@ -7,21 +7,34 @@
   </head>
   <body>
     <header id="header">
-      <h1>Ration</h1>
-      <span id="age" title="Age of the freshest reading"></span>
+      <h1>Ration <span id="subtitle">— AI Quota Tracker</span></h1>
+      <div id="header-right">
+        <span id="age" title="Age of the freshest reading"></span>
+        <button id="refresh" title="Refresh now" aria-label="Refresh now">⟳</button>
+      </div>
     </header>
     <main id="cards" aria-live="polite"></main>
     <footer id="footer">
       <button id="wipe" class="link-button" title="Delete everything Ration has stored locally">
         Clear all data
       </button>
-      <a
-        id="repo"
-        href="https://github.com/devudilip/ration"
-        target="_blank"
-        rel="noreferrer noopener"
-        >v0.1.0</a
-      >
+      <span id="footer-right">
+        <a
+          id="issues"
+          href="https://github.com/devudilip/ration/issues/new/choose"
+          target="_blank"
+          rel="noreferrer noopener"
+          >Report issue</a
+        >
+        <a
+          id="repo"
+          href="https://github.com/devudilip/ration"
+          target="_blank"
+          rel="noreferrer noopener"
+          title="Ration on GitHub"
+          ></a
+        >
+      </span>
     </footer>
     <script type="module" src="popup.js"></script>
   </body>
