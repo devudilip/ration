@@ -34,7 +34,16 @@ dashboards already live.
 Adding a provider is designed to be a single-file contribution — see
 [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Install (unpacked, v0.1)
+## Install
+
+**Option A — from a release (no build tools needed):**
+
+1. Download `ration-vX.Y.Z.zip` from the
+   [latest release](https://github.com/devudilip/ration/releases/latest)
+   and unzip it.
+2. Follow the browser steps below, selecting the unzipped folder.
+
+**Option B — build from source:**
 
 ```sh
 git clone https://github.com/devudilip/ration.git
@@ -46,7 +55,8 @@ npm run build
 Then in Chrome (or any Chromium browser):
 
 1. Open `chrome://extensions`, enable **Developer mode**.
-2. **Load unpacked** → select the `dist/` folder.
+2. **Load unpacked** → select the `dist/` folder (or the unzipped release
+   folder).
 3. Click the Ration icon and toggle on the providers you use. Each toggle
    asks for permission to that provider's site only, at that moment.
 4. You must be logged into the provider's site in this browser — Ration

@@ -1,0 +1,47 @@
+name: Release
+
+# Shipping is one command: tag a version and push the tag.
+#   git tag v0.1.1 && git push origin v0.1.1
+# This builds the extension, zips dist/, and publishes a GitHub Release
+# with the zip attached and auto-generated notes.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Verify tag matches manifest version
+        run: |
+          V=$(node -p "require('./public/manifest.json').version")
+          if [ "v$V" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match manifest version v$V" >&2
+            exit 1
+          fi
+
+      - name: Typecheck, test, build
+        run: npm run ci
+
+      - name: Package unpacked extension
+        run: |
+          cd dist
+          zip -r "../ration-${GITHUB_REF_NAME}.zip" .
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ration-*.zip
+          generate_release_notes: true
