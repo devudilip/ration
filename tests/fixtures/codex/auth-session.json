@@ -1,0 +1,9 @@
+{
+  "user": {
+    "id": "user-XXXXXXXXXXXXXXXXXXXX",
+    "name": "Example User",
+    "email": "user@example.com"
+  },
+  "expires": "2026-11-26T20:23:13.000Z",
+  "accessToken": "test-access-token-XXX"
+}

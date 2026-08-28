@@ -64,10 +64,14 @@ itself.
 
 Privacy and safety commitments, in order of importance:
 
-- **No credentials are ever read, stored, or transmitted.** The extension
-  never requests the `cookies` permission, never sees cookie values, and
-  never constructs an `Authorization` header (there's a test asserting
-  this). It cannot leak what it cannot see.
+- **No credentials are ever read or stored.** The extension never requests
+  the `cookies` permission and never sees cookie values. Where a provider's
+  own web app authenticates with a short-lived session token (Codex), the
+  adapter asks that provider's own session endpoint for the token at
+  refresh time — exactly what the page itself does — uses it in-memory for
+  the single request, and never persists it (there's a test asserting
+  this). For Claude, no `Authorization` header is ever constructed at all
+  (also tested).
 - **Zero telemetry.** No analytics, no error reporting service, no remote
   config, no runtime dependencies at all. What you see in this repo is the
   entire behavior.

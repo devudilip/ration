@@ -58,9 +58,12 @@ We read undocumented endpoints as guests:
   exponential backoff on failures — your adapter doesn't need to implement
   backoff, just report honest statuses.
 - Use `ctx.fetch(url, { credentials: 'include', headers: { Accept:
-  'application/json' } })`. Do not spoof another client's identity, add
-  fake client headers, or construct `Authorization` headers. Cookie-riding
-  Tier A adapters must never read credential values at all.
+  'application/json' } })`. Do not spoof another client's identity or add
+  fake client headers. Never read cookie values. If the provider's own web
+  app authenticates with a session-minted bearer token (see the Codex
+  adapter), obtain it from that provider's own session endpoint at fetch
+  time, keep it in function scope, and never persist it — not in
+  `ctx.cache`, not in storage, not in logs.
 - **Anthropic-specific:** PRs that read, store, or transmit Claude Code /
   claude.ai OAuth tokens will be declined — Anthropic's terms restrict
   those tokens to their own products (see README).
