@@ -1,0 +1,12 @@
+[
+  {
+    "uuid": "00000000-0000-4000-8000-00000000feed",
+    "name": "API Workspace",
+    "capabilities": ["api"]
+  },
+  {
+    "uuid": "00000000-0000-4000-8000-0000000000ca",
+    "name": "Personal",
+    "capabilities": ["chat", "claude_pro"]
+  }
+]

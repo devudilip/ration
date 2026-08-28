@@ -14,14 +14,26 @@ export interface RecordedRequest {
  */
 export function makeCtx(
   responder: (url: string) => Response | Promise<Response>,
-): FetchContext & { requests: RecordedRequest[] } {
+): FetchContext & { requests: RecordedRequest[]; cached: () => unknown } {
   const requests: RecordedRequest[] = [];
+  let cached: unknown;
   const fetchImpl = (async (input: RequestInfo | URL, init?: RequestInit) => {
     const url = typeof input === 'string' ? input : input instanceof URL ? input.href : input.url;
     requests.push({ url, init });
     return responder(url);
   }) as typeof globalThis.fetch;
-  return { fetch: fetchImpl, now: () => NOW, requests };
+  return {
+    fetch: fetchImpl,
+    now: () => NOW,
+    cache: {
+      get: async <T,>() => cached as T | undefined,
+      set: async (value) => {
+        cached = value;
+      },
+    },
+    requests,
+    cached: () => cached,
+  };
 }
 
 export const jsonResponse = (body: unknown, status = 200): Response =>
