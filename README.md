@@ -26,7 +26,7 @@ dashboards already live.
 |---|---|---|
 | Claude (claude.ai) | ✅ v0.1 | Your existing claude.ai browser session |
 | Codex (chatgpt.com) | ✅ v0.1 | Your existing chatgpt.com browser session |
-| Cursor | 🙏 PRs welcome | — |
+| Cursor (cursor.com) | ✅ v0.2 | Your existing cursor.com browser session |
 | Gemini | 🙏 PRs welcome | — |
 | Grok | 🙏 PRs welcome | — |
 | GitHub Copilot | 🙏 PRs welcome | — |
