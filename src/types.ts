@@ -63,6 +63,14 @@ export interface ProviderAdapter {
   /** Per-provider rate-limit floor: never refetch more often than this. */
   minRefreshMs: number;
   /**
+   * For providers whose API rejects extension-origin requests as CSRF
+   * ("Invalid origin for state-changing request"): while the provider is
+   * enabled, the extension's OWN requests matching `urlPrefix` get their
+   * Origin header set to `origin` via declarativeNetRequest. Scoped to
+   * requests initiated by this extension only — never other pages'.
+   */
+  originOverride?: { origin: string; urlPrefix: string };
+  /**
    * MUST never throw and MUST never coerce an unparseable response to zero —
    * every failure path returns a snapshot with an honest error status.
    */

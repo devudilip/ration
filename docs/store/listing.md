@@ -96,6 +96,18 @@ browser session.
   persistent background process.
   ```
 
+- `declarativeNetRequestWithHostAccess`:
+
+  ```
+  Some providers' usage APIs (Cursor) reject requests whose Origin header
+  is not the provider's own site. While such a provider is enabled, one
+  rule sets the Origin header to that provider's origin on this
+  extension's own read-only usage requests to that provider's API — and
+  nothing else: the rule is scoped to requests initiated by this
+  extension, on hosts the user has explicitly granted, so no other page's
+  requests are affected. No request content is read or modified.
+  ```
+
 - Optional host permission `https://claude.ai/*`:
 
   ```

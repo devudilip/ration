@@ -122,6 +122,10 @@ export const cursorAdapter: ProviderAdapter = {
   hostPermissions: ['https://cursor.com/*'],
   dashboardUrl: 'https://cursor.com/dashboard',
   minRefreshMs: 60_000,
+  // cursor.com rejects POSTs whose Origin isn't its own ("Invalid origin
+  // for state-changing request"), and extension requests carry a
+  // chrome-extension:// Origin. See background/request-rules.ts.
+  originOverride: { origin: 'https://cursor.com', urlPrefix: 'https://cursor.com/api/' },
 
   async fetch(ctx: FetchContext): Promise<ProviderSnapshot> {
     const base = {

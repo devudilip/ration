@@ -6,6 +6,7 @@
 import type { Msg } from '../types';
 import { getSettings, putSettings, removeProviderData, wipeAll } from '../lib/storage';
 import { ALARM_NAME, ALARM_PERIOD_MIN, refreshDueProviders, updateBadge } from './refresh';
+import { syncOriginRules } from './request-rules';
 
 function ensureAlarm(): void {
   // Idempotent: re-creating an alarm with the same name just reschedules it.
@@ -15,11 +16,14 @@ function ensureAlarm(): void {
 chrome.runtime.onInstalled.addListener(() => {
   ensureAlarm();
   void updateBadge();
+  void getSettings().then(syncOriginRules);
 });
 
 chrome.runtime.onStartup.addListener(() => {
   ensureAlarm();
   void updateBadge();
+  // Session rules don't survive browser restarts; re-sync from settings.
+  void getSettings().then(syncOriginRules);
 });
 
 chrome.alarms.onAlarm.addListener((alarm) => {
@@ -35,6 +39,7 @@ async function handleMessage(msg: Msg): Promise<void> {
       const settings = await getSettings();
       settings.providers[msg.providerId] = { enabled: msg.enabled };
       await putSettings(settings);
+      await syncOriginRules(settings);
       if (msg.enabled) {
         await refreshDueProviders('enable', msg.providerId);
       } else {
@@ -45,6 +50,7 @@ async function handleMessage(msg: Msg): Promise<void> {
     }
     case 'wipeAll':
       await wipeAll();
+      await syncOriginRules(await getSettings());
       await updateBadge();
       return;
   }

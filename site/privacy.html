@@ -106,7 +106,8 @@
       <ul>
         <li><b>storage</b> — to keep your readings and settings on your device.</li>
         <li><b>alarms</b> — to refresh quota readings on a schedule (every 5 minutes per enabled provider).</li>
-        <li><b>Provider site access</b> (e.g. claude.ai, chatgpt.com) — optional, requested only when you switch that provider on, and used solely to read your quota from that provider.</li>
+        <li><b>Provider site access</b> (e.g. claude.ai, chatgpt.com, cursor.com) — optional, requested only when you switch that provider on, and used solely to read your quota from that provider.</li>
+        <li><b>declarativeNetRequestWithHostAccess</b> — some providers' APIs (Cursor) reject requests unless the Origin header is the provider's own site; while such a provider is enabled, one rule sets that header on Ration's own read-only usage requests to that provider. The rule is scoped to Ration's own requests on sites you granted — it never touches any other page's traffic.</li>
       </ul>
 
       <h2>Changes and contact</h2>

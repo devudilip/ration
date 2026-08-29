@@ -3,12 +3,14 @@
 export interface ChromeFake {
   store: Map<string, unknown>;
   badge: { text: string; color: string };
+  sessionRules: Map<number, unknown>;
   uninstall: () => void;
 }
 
 export function installChromeFake(): ChromeFake {
   const store = new Map<string, unknown>();
   const badge = { text: '', color: '' };
+  const sessionRules = new Map<number, unknown>();
 
   const local = {
     async get(keys: string | string[] | null): Promise<Record<string, unknown>> {
@@ -44,12 +46,28 @@ export function installChromeFake(): ChromeFake {
     alarms: {
       create(): void {},
     },
+    runtime: {
+      id: 'test-extension-id',
+    },
+    declarativeNetRequest: {
+      RuleActionType: { MODIFY_HEADERS: 'modifyHeaders' },
+      HeaderOperation: { SET: 'set' },
+      ResourceType: { XMLHTTPREQUEST: 'xmlhttprequest' },
+      async updateSessionRules(options: {
+        removeRuleIds?: number[];
+        addRules?: { id: number }[];
+      }): Promise<void> {
+        for (const id of options.removeRuleIds ?? []) sessionRules.delete(id);
+        for (const rule of options.addRules ?? []) sessionRules.set(rule.id, rule);
+      },
+    },
   };
 
   (globalThis as { chrome?: unknown }).chrome = fake;
   return {
     store,
     badge,
+    sessionRules,
     uninstall: () => {
       delete (globalThis as { chrome?: unknown }).chrome;
     },
