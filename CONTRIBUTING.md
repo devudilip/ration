@@ -79,7 +79,7 @@ We read undocumented endpoints as guests:
 Also record (or hand-write) at least: a logged-out response, and a
 deliberately wrong shape (for the `schema_mismatch` test).
 
-### Worked example: a hypothetical Cursor adapter
+### Worked example: sketching an adapter
 
 ```ts
 // src/adapters/cursor.ts
@@ -121,8 +121,9 @@ import { cursorAdapter } from './cursor';
 export const adapters = [claudeAdapter, codexAdapter, cursorAdapter] as const;
 ```
 
-Look at `src/adapters/codex.ts` (simpler) and `src/adapters/claude.ts`
-(endpoint probing, per-provider cache) for complete, tested references, and
+Look at `src/adapters/codex.ts` (session-token auth), `src/adapters/claude.ts`
+(endpoint probing, per-provider cache), and `src/adapters/cursor.ts`
+(POST endpoints, team-id discovery) for complete, tested references, and
 mirror `tests/codex.test.ts` for the test checklist: happy path per
 variant, unauthenticated, rate-limited, unknown shape → `schema_mismatch`,
 never-throws, and no `Authorization` header.

@@ -7,8 +7,9 @@
 import type { ProviderAdapter } from '../types';
 import { claudeAdapter } from './claude';
 import { codexAdapter } from './codex';
+import { cursorAdapter } from './cursor';
 
-export const adapters: readonly ProviderAdapter[] = [claudeAdapter, codexAdapter];
+export const adapters: readonly ProviderAdapter[] = [claudeAdapter, codexAdapter, cursorAdapter];
 
 export const getAdapter = (id: string): ProviderAdapter | undefined =>
   adapters.find((adapter) => adapter.id === id);
