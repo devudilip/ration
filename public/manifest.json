@@ -1,10 +1,10 @@
 {
   "manifest_version": 3,
   "name": "Ration — AI Quota Tracker",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "One glance at remaining quota across your AI subscriptions. No accounts, no telemetry, no credential access.",
   "minimum_chrome_version": "120",
-  "permissions": ["storage", "alarms"],
+  "permissions": ["storage", "alarms", "declarativeNetRequestWithHostAccess"],
   "optional_host_permissions": [
     "https://claude.ai/*",
     "https://chatgpt.com/*",
