@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Privacy Policy — Ration</title>
+    <meta name="description" content="Ration's privacy policy: no data collection, no telemetry, no accounts. Everything stays in your browser." />
+    <link rel="icon" href="favicon.png" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --fg: #1f2937;
+        --fg-muted: #6b7280;
+        --border: #e5e7eb;
+        --accent: #2563eb;
+        color-scheme: light dark;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #111827;
+          --fg: #f3f4f6;
+          --fg-muted: #9ca3af;
+          --border: #374151;
+          --accent: #60a5fa;
+        }
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font: 16px/1.65 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      }
+      main {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 48px 24px 64px;
+      }
+      h1 {
+        font-size: 32px;
+        letter-spacing: -0.02em;
+        margin: 0 0 4px;
+      }
+      .updated {
+        color: var(--fg-muted);
+        font-size: 14px;
+        margin-bottom: 32px;
+      }
+      h2 {
+        font-size: 20px;
+        margin: 32px 0 8px;
+        letter-spacing: -0.01em;
+      }
+      p, li {
+        margin: 8px 0;
+      }
+      a {
+        color: var(--accent);
+      }
+      .summary {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 14px 18px;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Privacy Policy</h1>
+      <p class="updated">Ration — AI Quota Tracker · Last updated: August 2026</p>
+
+      <p class="summary">
+        Ration collects no data. It has no backend, no analytics, no accounts,
+        and no telemetry of any kind. Nothing you do ever leaves your browser.
+      </p>
+
+      <h2>What Ration does</h2>
+      <p>
+        Ration is a browser extension that displays the remaining usage quota of
+        the AI subscription services you choose to enable (for example Claude
+        and Codex/ChatGPT). To do this, it calls the same internal usage
+        endpoint each provider's own settings page uses, from your browser,
+        using the login session you already have with that provider.
+      </p>
+
+      <h2>Data collection: none</h2>
+      <ul>
+        <li>Ration transmits no data to its developer or to any third party.</li>
+        <li>There is no analytics SDK, no error-reporting service, no remote configuration, and no runtime dependency of any kind.</li>
+        <li>The only network requests Ration makes are to the provider sites you explicitly enable, solely to read your quota.</li>
+      </ul>
+
+      <h2>What is stored, and where</h2>
+      <ul>
+        <li>Your latest quota readings and your provider on/off settings are stored locally in your browser (<code>chrome.storage.local</code>). They are never synced or uploaded.</li>
+        <li>The <b>Clear all data</b> button in the popup permanently deletes everything Ration has stored.</li>
+      </ul>
+
+      <h2>Credentials</h2>
+      <ul>
+        <li>Ration never reads, stores, or transmits your passwords, cookies, or tokens. It does not request the <code>cookies</code> browser permission.</li>
+        <li>Requests to provider sites rely on the browser attaching your existing session automatically — the same way the provider's own settings page works. Where a provider's web app uses a short-lived session token, Ration obtains it from that provider's own session endpoint at the moment of the request, uses it in memory once, and never persists it.</li>
+      </ul>
+
+      <h2>Permissions</h2>
+      <ul>
+        <li><b>storage</b> — to keep your readings and settings on your device.</li>
+        <li><b>alarms</b> — to refresh quota readings on a schedule (every 5 minutes per enabled provider).</li>
+        <li><b>Provider site access</b> (e.g. claude.ai, chatgpt.com) — optional, requested only when you switch that provider on, and used solely to read your quota from that provider.</li>
+      </ul>
+
+      <h2>Changes and contact</h2>
+      <p>
+        Ration is open source — its entire behavior is auditable at
+        <a href="https://github.com/devudilip/ration">github.com/devudilip/ration</a>.
+        Changes to this policy are made in that repository with public history.
+        Questions or concerns:
+        <a href="https://github.com/devudilip/ration/issues">open an issue</a>.
+      </p>
+    </main>
+  </body>
+</html>
