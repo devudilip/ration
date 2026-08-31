@@ -165,14 +165,19 @@
         Free, open source, and it never phones home.
       </p>
       <div class="buttons">
-        <span class="btn soon" title="Under review — install from the zip meanwhile"
-          >Chrome Web Store<small>coming soon</small></span
+        <a
+          class="btn primary"
+          href="https://chromewebstore.google.com/detail/ration-%E2%80%94-ai-quota-tracker/lhmbecapbijngjmmbojinikaaabeajoe"
+          >Add to Chrome — it's free</a
         >
-        <a class="btn primary" href="https://github.com/devudilip/ration/releases/latest"
-          >Download latest zip</a
+        <a class="btn" href="https://github.com/devudilip/ration/releases/latest"
+          >Download zip</a
         >
         <a class="btn" href="https://github.com/devudilip/ration">GitHub</a>
       </div>
+      <p style="color: var(--fg-muted); font-size: 13px; margin: 10px 0 0">
+        Works on Chrome, Brave, Edge, Opera and other Chromium browsers.
+      </p>
       <picture>
         <source srcset="assets/popup-dark.png" media="(prefers-color-scheme: dark)" />
         <img
@@ -213,7 +218,16 @@
 
     <section>
       <div class="wrap">
-        <h2>Install (until the store listing is live)</h2>
+        <h2>Install</h2>
+        <p>
+          <a
+            href="https://chromewebstore.google.com/detail/ration-%E2%80%94-ai-quota-tracker/lhmbecapbijngjmmbojinikaaabeajoe"
+            >Install from the Chrome Web Store</a
+          >
+          (one click, auto-updates), then click the Ration icon and toggle on the providers
+          you use — each one asks for permission to its own site only, at that moment.
+        </p>
+        <p>Prefer installing from source? The manual path:</p>
         <ol class="install">
           <li>
             <a href="https://github.com/devudilip/ration/releases/latest">Download the zip</a>
@@ -221,10 +235,6 @@
           </li>
           <li>Open <code>chrome://extensions</code> and switch on <b>Developer mode</b>.</li>
           <li><b>Load unpacked</b> → select the unzipped folder.</li>
-          <li>
-            Click the Ration icon and toggle on the providers you use — each one asks for
-            permission to its own site only, at that moment.
-          </li>
         </ol>
       </div>
     </section>
