@@ -36,8 +36,9 @@ Adding a provider is designed to be a single-file contribution — see
 
 ## Install
 
-**Website:** <https://devudilip.github.io/ration> · **Chrome Web Store:**
-coming soon (see `docs/store/` for the submission package).
+**⭐ Easiest — [Chrome Web Store](https://chromewebstore.google.com/detail/ration-%E2%80%94-ai-quota-tracker/lhmbecapbijngjmmbojinikaaabeajoe):**
+one click, auto-updates. Works on Chrome, Brave, Edge, Opera and other
+Chromium browsers. (**Website:** <https://devudilip.github.io/ration>)
 
 **Option A — from a release (no build tools needed):**
 
